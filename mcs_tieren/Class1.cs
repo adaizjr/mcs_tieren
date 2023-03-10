@@ -38,7 +38,7 @@ namespace zjr_mcs
                 if (!b_saving)
                 {
                     b_saving = true;
-                    UIPopTip.Inst.Pop("2秒后返回主界面", PopTipIconType.感悟);
+                    UIPopTip.Inst.Pop("4秒后返回主界面", PopTipIconType.感悟);
                     int tmp_id = PlayerPrefs.GetInt("NowPlayerFileAvatar");
                     YSNewSaveSystem.SaveGame(tmp_id, 1, null, false);
                     SingletonMono<Tab.TabUIMag>.Instance.TryEscClose();
@@ -50,7 +50,7 @@ namespace zjr_mcs
         }
         static void returnTitle(Tab.TabSystemPanel __instance)
         {
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(4000);
             if (FpUIMag.inst != null)
             {
                 UnityEngine.Object.Destroy(FpUIMag.inst.gameObject);
