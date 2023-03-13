@@ -26,6 +26,19 @@ namespace zjr_mcs
             return false;
         }
     }
+    [HarmonyPatch(typeof(YSNewSaveSystem), "AutoSave")]
+    class TierenAutoSavePatch
+    {
+        public static bool Prefix()
+        {
+            if (PlayerEx.GetGameDifficulty() <= 游戏难度.极难 || PlayerEx.GetGameDifficulty() > 游戏难度.极简)
+            {
+                UIPopTip.Inst.Pop("极难及未知难度不能F5存档", PopTipIconType.感悟);
+                return false;
+            }
+            return true;
+        }
+    }
 
     [HarmonyPatch(typeof(Tab.TabSystemPanel), "ReturnTittle")]
     class TierenReturnPatch
@@ -40,7 +53,8 @@ namespace zjr_mcs
                     b_saving = true;
                     UIPopTip.Inst.Pop("4秒后返回主界面", PopTipIconType.感悟);
                     int tmp_id = PlayerPrefs.GetInt("NowPlayerFileAvatar");
-                    YSNewSaveSystem.SaveGame(tmp_id, 1, null, false);
+                    int tmp_slot = (PlayerEx.GetGameDifficulty() <= 游戏难度.极难 || PlayerEx.GetGameDifficulty() > 游戏难度.极简) ? 0 : 1;
+                    YSNewSaveSystem.SaveGame(tmp_id, tmp_slot, null, false);
                     SingletonMono<Tab.TabUIMag>.Instance.TryEscClose();
                     System.Threading.Thread tmp_t = new System.Threading.Thread(() => returnTitle(__instance));
                     tmp_t.Start();
@@ -91,7 +105,8 @@ namespace zjr_mcs
                     b_saving = true;
                     UIPopTip.Inst.Pop("4秒后退出游戏", PopTipIconType.感悟);
                     int tmp_id = PlayerPrefs.GetInt("NowPlayerFileAvatar");
-                    YSNewSaveSystem.SaveGame(tmp_id, 1, null, false);
+                    int tmp_slot = (PlayerEx.GetGameDifficulty() <= 游戏难度.极难 || PlayerEx.GetGameDifficulty() > 游戏难度.极简) ? 0 : 1;
+                    YSNewSaveSystem.SaveGame(tmp_id, tmp_slot, null, false);
                     SingletonMono<Tab.TabUIMag>.Instance.TryEscClose();
                     System.Threading.Thread tmp_t = new System.Threading.Thread(() => returnTitle(__instance));
                     tmp_t.Start();
