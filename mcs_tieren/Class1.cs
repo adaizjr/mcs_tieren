@@ -12,7 +12,7 @@ namespace zjr_mcs
         void Awake()
         {
             // 使用Debug.Log()方法来将文本输出到控制台
-            Debug.Log("Hello, world!");
+            Debug.Log("Hello,tieren!");
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
         }
     }
@@ -51,7 +51,7 @@ namespace zjr_mcs
                 if (!b_saving)
                 {
                     b_saving = true;
-                    UIPopTip.Inst.Pop("4秒后返回主界面", PopTipIconType.感悟);
+                    UIPopTip.Inst.Pop("5秒后返回主界面", PopTipIconType.感悟);
                     int tmp_id = PlayerPrefs.GetInt("NowPlayerFileAvatar");
                     int tmp_slot = (PlayerEx.GetGameDifficulty() <= 游戏难度.极难 || PlayerEx.GetGameDifficulty() > 游戏难度.极简) ? 0 : 1;
                     YSNewSaveSystem.SaveGame(tmp_id, tmp_slot, null, false);
@@ -64,7 +64,7 @@ namespace zjr_mcs
         }
         static void returnTitle(Tab.TabSystemPanel __instance)
         {
-            System.Threading.Thread.Sleep(4000);
+            System.Threading.Thread.Sleep(5000);
             if (FpUIMag.inst != null)
             {
                 UnityEngine.Object.Destroy(FpUIMag.inst.gameObject);
@@ -103,7 +103,7 @@ namespace zjr_mcs
                 if (!b_saving)
                 {
                     b_saving = true;
-                    UIPopTip.Inst.Pop("4秒后退出游戏", PopTipIconType.感悟);
+                    UIPopTip.Inst.Pop("5秒后退出游戏", PopTipIconType.感悟);
                     int tmp_id = PlayerPrefs.GetInt("NowPlayerFileAvatar");
                     int tmp_slot = (PlayerEx.GetGameDifficulty() <= 游戏难度.极难 || PlayerEx.GetGameDifficulty() > 游戏难度.极简) ? 0 : 1;
                     YSNewSaveSystem.SaveGame(tmp_id, tmp_slot, null, false);
@@ -116,7 +116,7 @@ namespace zjr_mcs
         }
         static void returnTitle(Tab.TabSystemPanel __instance)
         {
-            System.Threading.Thread.Sleep(4000);
+            System.Threading.Thread.Sleep(5000);
             Application.Quit();
         }
     }
